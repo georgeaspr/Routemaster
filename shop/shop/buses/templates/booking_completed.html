@@ -1,0 +1,40 @@
+﻿{% extends "master.html" %}
+
+{% block title %}Routemaster - Booking Completed{% endblock %}
+{% load static %}
+{% block content %}
+
+<style>
+
+    .label {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .container {
+        text-align: center;
+        margin-bottom: 80px
+    }
+
+    input[type="text"],
+    select {
+        font-size: 24px;
+        padding: 10px;
+        width: 300px;
+    }
+
+</style>
+
+<div class="container">
+       <h1 style="font-size: 30; font-weight: bold; position:absolute; bottom: 300">Η κράτησή σας ολοκληρώθηκε με επιτυχία ✅</h1>
+        
+       <div style="position:absolute; bottom: 100">
+            <a href="/"> Πίσω στην Αρχική σελίδα</a>
+       </div>
+</div>
+
+
+
+
+
+{% endblock %}

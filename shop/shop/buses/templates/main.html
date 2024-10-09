@@ -1,0 +1,62 @@
+﻿{% extends "master.html" %}
+
+{% block title %}Routemaster - Home{% endblock %}
+{% load static %}
+{% block content %}
+
+  <div class="container">
+    
+    <a href="/booking/"><button class="bookingbutton" style="font-weight: bold; position: absolute; right: 25; top: 10; height: 60; width: 240; font-size: 22;  border-radius: 8px;"> Κάντε κράτηση εδώ!</button></a>  
+
+    <h1 style="position: absolute; top: 0; font-size: 30; text-align: center;">Ταξιδέψτε σήμερα!</h1>
+    
+    <a class="slideshow-btn prev" onclick="showPreviousSlide()"><button class="custom-button" style=" border: none; cursor: pointer; height: 100px;">&#10094;</button></a>
+
+    <div class="slide">
+        <img class= "imageMain" src="{% static 'Athens.jpg' %}" alt="Athens">
+        <div>Αθήνα</div>
+    </div>
+    <div class="slide">
+        <img class= "imageMain" src="{% static 'Thessaloniki.jpg' %}" alt="Thessaloniki">
+        <div>Θεσσαλονίκη</div>
+    </div>
+    <div class="slide">
+        <img class= "imageMain" src="{% static 'Trikala.jpg' %}" alt="Trikala">
+        <div>Τρίκαλα</div>
+    </div>
+    <div class="slide">
+        <img class= "imageMain" src="{% static 'Patra.jpg' %}" alt="Patra">
+        <div>Πάτρα</div>
+    </div>
+    <div class="slide">
+        <img class= "imageMain" src="{% static 'Chalkida.jpg' %}" alt="Chalkida">
+        <div>Χαλκίδα</div>
+    </div>
+
+    
+    <a class="slideshow-btn next" onclick="showNextSlide()"><button class="custom-button" style=" border: none; cursor: pointer; height: 100px;">&#10095;</button></a>
+   </div>
+
+    
+  <script>
+    var slides = document.getElementsByClassName("slide");
+    var currentSlide = 0;
+    
+    function showNextSlide() {
+      slides[currentSlide].style.display = "none";
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].style.display = "block";
+    }
+
+    function showPreviousSlide() {
+      slides[currentSlide].style.display = "none";
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      slides[currentSlide].style.display = "block";
+    }
+
+
+    slides[currentSlide].style.display = "block"
+    // Start the slideshow
+    setInterval(showNextSlide, 5000); // Change slide every 2 seconds (adjust the timing as needed)
+  </script>
+  {% endblock %}

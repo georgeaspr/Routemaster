@@ -1,0 +1,49 @@
+﻿{% extends "master.html" %}
+
+{% block title %}Routemaster - Booking{% endblock %}
+{% load static %}
+{% block content %}
+
+<style>
+
+    .label {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .container {
+        text-align: center;
+        margin-bottom: 80px
+    }
+
+    input[type="text"],
+    select {
+        font-size: 24px;
+        padding: 10px;
+        width: 300px;
+    }
+
+</style>
+
+<div class="container">
+
+    <div style="font-size: 30;">
+        <h1 style="font-size: 35; font-weight: bold;"> Στοιχεία Κράτησης </h1>
+        Ημερομηνία: {{ date }} <br>
+        Διαδρομή: {{ route }} <br>
+        Ώρα: {{ time }} <br>
+        Ονοματεπώνυμο: {{ fname }} {{ lname }} <br>
+        Θέση: {{ seatNo }} <br>
+        Τύπος εισητηρίου: {{ ticketType }} <br> <br><br>           
+        <form method="post" action="{% url 'booking_completion' %}">
+            {% csrf_token %}
+            <button type="submit" id="nextPage" class="custom-button" style="font-size: 20px; padding: 10px 20px;">Ολοκλήρωση Κράτησης</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

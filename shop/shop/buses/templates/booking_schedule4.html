@@ -1,0 +1,76 @@
+﻿{% extends "master.html" %}
+
+{% block title %}Routemaster - Booking{% endblock %}
+{% load static %}
+{% block content %}
+
+<style>
+
+    .label {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .container {
+        text-align: center;
+        margin-bottom: 80px
+    }
+
+    input[type="text"],
+    select {
+        font-size: 24px;
+        padding: 10px;
+        width: 300px;
+    }
+
+</style>
+
+<div class="container">
+    <div style="position:absolute; top:0; left:10; font-size: 20px;">
+        Ημερομηνία: {{ date }} <br>
+        Αφετηρία: {{ start }} <br>
+        Προόρισμος: {{ end }} <br>
+        Ώρα: {{ time }}
+    </div>
+
+    <div>
+        <form method="post" action="{% url 'booking_schedule4' %}">
+            {% csrf_token %}
+            <label class='label' for="fname">Όνομα:</label>
+            <input type="text" id="fname" name="fname" required><br><br>
+            <label class='label' for="lname">Επώνυμο:</label>
+            <input type="text" id="lname" name="lname" required><br><br>
+
+            <label class='label' for="ticket">Διαλέξτε τύπο εισιτηρίου:</label>
+
+            <select name="ticket" id="ticket">
+              <option value="Κανονικό {{ price.0 }}€">Κανονικό {{ price.0 }}€</option>
+              <option value="Φοιτητικό -50% {{ halfpr.0 }}€">Φοιτητικό -50% {{ halfpr.0 }}€</option>
+              <option value="Φοιτητικό -25% {{ half25.0 }}€">Φοιτητικό -25% {{ half25.0 }}€</option>
+              <option value="Στρατιωτικό -25% {{ half25.0 }}€">Στρατιωτικό -25% {{ half25.0 }}€</option> 
+            </select> <br><br>
+
+            
+            <label class='label' for="seat">Επιλέξτε θέση:</label>
+
+            <select name="seat" id="seat" required>
+                {% if aseats %}
+                    {% for x in aseats %}
+                        <option value="{{ x }}">{{ x }}</option>
+                    {% endfor %}
+                {% else %}
+                    <option disabled>No available seats</option>
+                {% endif %}
+            </select>
+            <br> <br>
+            <button type="submit" id="nextPage" class="custom-button" style="font-size: 20px; padding: 10px 20px;">Επόμενο</button>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

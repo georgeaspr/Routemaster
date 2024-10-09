@@ -1,0 +1,68 @@
+﻿{% extends "master.html" %}
+
+{% block title %}Routemaster - Booking{% endblock %}
+{% load static %}
+{% block content %}
+
+<style>
+    .label {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .container {
+        text-align: center;
+        margin-bottom: 80px
+    }
+
+    .date-field {
+        font-size: 20px;
+        padding: 10px;
+        margin-top: 20px
+    }
+
+    .button {
+        font-size: 20px;
+        padding: 10px 20px;
+    }
+</style>
+
+<div class="container">
+    <form method="post" action="{% url 'booking' %}">
+        {% csrf_token %}
+        <div>
+            <label for="date" class="label">Επιλέξτε την ημέρα που θέλετε να ταξιδέψετε:</label>
+        </div>
+        <div>
+            <input type="date" id="date_field" name="date_field" class="date-field" required>
+        </div>
+        <div>
+            <button type="submit" id="nextPage" class="custom-button" style="font-size: 20px; padding: 10px 20px;">Επόμενο</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Get the input element
+    var datePicker = document.getElementById("date_field");
+
+    // Get the current date
+    var today = new Date();
+    var dd = today.getDate() + 1;
+    var mm = today.getMonth() + 1; // Months are zero-based
+    var yyyy = today.getFullYear();
+
+    // Format the current date for the date picker
+    if (dd < 10) {
+        dd = "0" + dd;
+    }
+    if (mm < 10) {
+        mm = "0" + mm;
+    }
+    var currentDate = yyyy + "-" + mm + "-" + dd;
+
+    // Set the minimum value for the date picker to today
+    datePicker.setAttribute("min", currentDate);
+</script>
+
+{% endblock %}

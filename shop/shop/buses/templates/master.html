@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <style>
+    /* CSS for the top panel */
+    .top-panel {
+      background-color: #000000;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      flex-direction: column; /* Arrange content in a column */
+      align-items: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 9999;
+    }
+
+    .logo {
+      width: 350px; /* Adjust the width as needed */
+      height: auto;
+      margin-right: 10px; /* Adjust the spacing as needed */
+    }
+
+    /* Reset margin and padding for html and body */
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin-top: 250px; /* Adjust the value based on the height of the top panel */
+      font-family: Arial, sans-serif; /* Specify the font family */
+      display: flex;
+    }
+
+    table {
+        border-collapse: collapse;
+        border: 5px solid orange;
+    }
+
+    th, td {
+        border: 3px solid orange;
+        padding: 8px;
+    }
+
+    .top-panel button {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-left: 5px;
+      font-family: Arial, sans-serif;
+      font-size: 25px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .top-panel button:hover {
+      background-color: orange;
+      color: black;
+      cursor: pointer;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      position: relative;
+    }
+
+    .slide {
+      margin-top: 0;
+      display: none;
+      font-size: 25px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .contents{
+        position: relative;
+        border: 5px solid black;
+    }
+
+    .caption{
+        font-family: Arial, sans-serif;
+    }
+
+    .imageMain{
+        width: 1000px;
+        height: 500px;
+    }
+    
+    .custom-button:hover {
+    background-color: orange;
+    transition: background-color 0.5s ease;
+  }
+
+    .custom-button.active {
+    background-color: orange;
+    }
+
+    .bookingbutton{
+        background-color: orange;
+        cursor: pointer;
+    }
+
+    .bookingbutton:hover {
+    background-color: black;
+    transition: background-color 0.5s ease;
+    color: white;
+  }
+
+  </style>
+</head>
+
+<body>
+  <div class="top-panel">
+    <a href="/">
+    {% load static %}
+        <img class="logo" src="{% static "routemasterlogo.png" %}" alt="Company Logo" width="225" height="100">
+    </a>
+    <p>Ασφαλείς και αξιόπιστες υπεραστικές επιβατικές μεταφορές</p>
+    <div>
+        <a href="/"><button>Αρχική</button></a>
+        <a href="/buses/"><button>Δρομολόγια</button></a>
+        <a href="/prices/"><button>Τιμοκατάλογος</button></a>
+        <a href="/contact/"><button>Επικοινωνία</button></a>
+    </div>
+  </div>
+
+
+  {% block content %}
+  {% endblock %}
+
+
+</body>
+</html>

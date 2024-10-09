@@ -1,0 +1,44 @@
+﻿{% extends "master.html" %}
+
+{% block title %}Routemaster - Booking{% endblock %}
+{% load static %}
+{% block content %}
+
+<style>
+
+    .label {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .container {
+        text-align: center;
+        margin-bottom: 80px
+    }
+
+</style>
+
+<div class="container">
+
+    <div style="position:absolute; top:0; left:10; font-size: 20px;">
+        Ημερομηνία: {{ date }} <br>
+        Αφετηρία: {{ start }} <br>
+        Προόρισμος: {{ end }}
+    </div>
+
+    <form method="post" action="{% url 'booking_schedule3' %}">
+        {% csrf_token %}
+        <div>
+            <label for="date" class="label">Επιλέξτε ώρα</label>
+        </div>
+        <div style="margin-top: 20px;">
+             {% for x in schedules %}
+                <button class="custom-button" style="font-size: 22; cursor: pointer; border: none; width: 300; height: 70;" type="submit" name="button_value" value="{{ x|time:"H:i" }}"> {{ x|time:"H:i" }}</button>
+             {% endfor %}
+        </div>
+    </form>
+
+</div>
+
+
+{% endblock %}

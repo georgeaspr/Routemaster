@@ -1,0 +1,24 @@
+﻿{% extends "master.html" %}
+
+{% block title %}
+  RouteMaster - List of all buses
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <a href="/booking/"><button class="bookingbutton" style="font-weight: bold; position: absolute; right: 25; top: 10; height: 60; width: 240; font-size: 22;  border-radius: 8px;"> Κάντε κράτηση εδώ!</button></a>  
+
+    <div style="position: absolute; top: 0;">
+
+        <h1 style="text-align: center;">Δρομολόγια</h1>
+        <div style="display: flex; flex-direction: column; margin-left: -11; width: 300;">
+          {% for x in buses %}
+            <a href="/buses/details/{{ x.id }}"><button class="custom-button" style="font-size: 22; cursor: pointer; border: none; width: 300; height: 70;">{{ x.city2 }} - {{ x.city1 }}</button> </a>
+          {% endfor %}
+          <p style="margin-left: 22; color: 3d3d3d;">Τα δρομολόγια εκτελούνται και αντίστροφα.* </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
